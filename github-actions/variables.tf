@@ -19,4 +19,7 @@ variable "pm_api_token_secret" {
 variable "k8s_config_path" {
     default = "/etc/kubernetes/admin.yaml"
 }
+variable "k8s_config_path" {
+    default = "default"
+}
 
