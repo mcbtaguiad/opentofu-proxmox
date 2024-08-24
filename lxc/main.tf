@@ -44,6 +44,8 @@ resource "proxmox_lxc" "lxc-dns" {
         name = "eth0"
         bridge = "vmbr0"
         ip = "192.168.254.8${count.index}/24"
+        gw = "192.168.254.254"
+        firewall = true
     }
 }
 
