@@ -27,7 +27,7 @@ data "terraform_remote_state" "tagsdev-k8s" {
 resource "proxmox_vm_qemu" "k8s-master-1" {
     count = 1
     name = "k8s-master-${count.index + 1}" 
-    desc = "k8s-master-1"
+    desc = "k8s-master-${count.index + 1}" 
     tags = "k8s"
     target_node = var.proxmox_host
     vmid = "11${count.index + 1}"
@@ -36,7 +36,7 @@ resource "proxmox_vm_qemu" "k8s-master-1" {
 
     cores   = 2
     sockets = 1
-    memory  = 2048
+    memory  = 2560
     agent = 1
     
     bios = "seabios"
@@ -85,7 +85,7 @@ resource "proxmox_vm_qemu" "k8s-master-2" {
 
     cores   = 2
     sockets = 1
-    memory  = 2048
+    memory  = 2560
     agent = 1
     
     bios = "seabios"
@@ -134,7 +134,7 @@ resource "proxmox_vm_qemu" "k8s-master-3" {
 
     cores   = 2
     sockets = 1
-    memory  = 2048
+    memory  = 2560
     agent = 1
     
     bios = "seabios"
@@ -321,7 +321,7 @@ resource "proxmox_vm_qemu" "k8s-worker-3" {
     }
 }
 # ============================================================================ #
-#                                    WORKER                                    #
+#                                   STORAGE                                    #
 # ============================================================================ #
 resource "proxmox_vm_qemu" "k8s-storage-1" {
     count = 1
@@ -421,8 +421,8 @@ resource "proxmox_vm_qemu" "k8s-storage-2" {
             scsi1 {
                 disk {
                     backup = false
-                    size       = 600
-                    storage    = "tags-hdd-pool1"
+                    size       = 512
+                    storage    = "tags-hdd-thin-pool1"
                     emulatessd = false
                 }
             }
